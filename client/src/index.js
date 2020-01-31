@@ -22,19 +22,16 @@ const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
 });
 
-// let uri;
+let uri;
 
-// if (process.env.NODE_ENV === "production") {
-//   uri = `/graphql`;
-// } else {
-//   uri = "http://localhost:5000/graphql";
-// }
-
-// console.log(process.env.NODE_ENV);
-// console.log(uri)
+if (process.env.NODE_ENV === "production") {
+  uri = `/graphql`;
+} else {
+  uri = "http://localhost:5000/graphql";
+}
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:5000/graphql",
+  uri,
   headers: {
     authorization: localStorage.getItem("auth-token")
   }
