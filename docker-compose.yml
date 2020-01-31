@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    image: 4868/dueme
+    environment:
+      NODE_ENV: production
+      MONGO_URI: "YOUR_MONGO_URI"
+    ports:
+      - "5000:5000"
