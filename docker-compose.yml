@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.web
-    image: 4868/dueme
+    image: store
     environment:
       NODE_ENV: production
       MONGO_URI: "mongodb+srv://admin:mR24goN97t0ZD4k3@cluster0-mpqvh.mongodb.net/test?retryWrites=true&w=majority"
