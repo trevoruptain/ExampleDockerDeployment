@@ -9,28 +9,14 @@ const expressGraphQL = require("express-graphql");
 const cors = require("cors");
 const app = express();
 
+app.use(cors());
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
-  app.get("*", (req, res) => {
-    const indexPath = path.resolve(__dirname, "client/build", "index.html");
-    console.log(indexPath);
-    res.sendFile(indexPath);
+  app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-
-if (!db) {
-  throw new Error("You must provide a string to connect to MongoDB Atlas");
-}
-
-mongoose
-  // The configuration object we pass into connect() prevents an error being thrown by the latest release of MongoDB's driver
-  .connect(db, { useNewUrlParser: true })
-  .then(() => console.log("Connected to MongoDB successfully"))
-  .catch(err => console.log(err));
-
-app.use(bodyParser.json());
-
-app.use(cors());
 
 app.use(
   "/graphql",
@@ -44,5 +30,18 @@ app.use(
     };
   })
 );
+
+if (!db) {
+  throw new Error("You must provide a string to connect to MongoDB Atlas");
+}
+
+mongoose
+  // The configuration object we pass into connect() prevents an error being thrown by the latest release of MongoDB's driver
+  .connect(db, { useNewUrlParser: true })
+  .then(() => console.log("Connected to MongoDB successfully"))
+  .catch(err => console.log(err));
+
+// Recall that we use body-parer in order to be able to parse incoming requests in middleware before they are handled
+app.use(bodyParser.json());
 
 module.exports = app;
