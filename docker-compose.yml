@@ -8,6 +8,7 @@ services:
     image: 4868/dueme
     environment:
       NODE_ENV: production
-      MONGO_URI: "YOUR_MONGO_URI"
+      MONGO_URI: "mongodb+srv://admin:mR24goN97t0ZD4k3@cluster0-mpqvh.mongodb.net/test?retryWrites=true&w=majority"
+      secretOrKey: "tacotruck34872394"
     ports:
       - "5000:5000"
