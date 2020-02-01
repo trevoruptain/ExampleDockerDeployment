@@ -8,7 +8,7 @@ services:
     image: store
     environment:
       NODE_ENV: production
-      MONGO_URI: "mongodb+srv://admin:mR24goN97t0ZD4k3@cluster0-mpqvh.mongodb.net/test?retryWrites=true&w=majority"
+      MONGO_URI: "YOUR_MONGO_URI"
       secretOrKey: "tacotruck34872394"
     ports:
       - "5000:5000"
